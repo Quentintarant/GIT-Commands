@@ -1,0 +1,236 @@
+GIT & GITHUB
+=============[13/11/23]
+
+Source Code Management System:
+	to maintain the code by versioning 
+git --version 
+	git version 2.42.0.windows.2
+
+
+GIT COMMANDS
+
+start a working area (see also: git help tutorial)
+git clone     
+
+	Explanation: This command is used to create a copy of a repository from an existing URL. It initializes
+ a new Git repository and fetches the code from the specified URL.
+
+Examples:
+	1. Clone a repository from a remote URL:git clone https://github.com/example/repo.git
+	2.Clone a repository and specify a local directory name:git clone https://github.com/example/repo.git my-local-repo
+	3.Clone a repository using the SSH protocol:git clone git@github.com:example/repo.git
+
+git init     
+
+	Explanation: This command is used to start a new Git repository. It initializes a new repository in the current directory, adding a hidden subfolder
+ within it that houses the internal data structure required for version control.
+
+Examples:
+	1. Initialize a new Git repository in the current directory:git init
+	2. Initialize a Git repository in a specific directory:git init my-project
+                                                             cd my-project
+	3. Reinitialize an existing Git repository (use with caution, as it resets the repository):rm -rf .git 
+																  git init
+
+git add
+
+Explanation: This command is used to add changes in the working directory to the staging area.
+It tells Git that you want to include updates to a particular set of files in the next commit.
+
+Examples: 
+	1.Add all changes in the working directory to the staging area: git add .       
+	2.Add a specific file to the staging area: git add filename.txt
+	3.Add changes in a specific directory to the staging area: git add path/to/directory/
+git mv
+
+Explanation: This command is used to move or rename a file, a directory, or a symlink in your working directory and stages the change for commit.
+
+Examples:
+
+	1.Move a file to a new location: git mv oldfile.txt newlocation/
+	2.Rename a file: git mv oldname.txt newname.txt
+	3.Move a directory: git mv oldfolder/ newlocation/
+
+git restore
+
+Explanation: This command is used to restore working tree files. It can be used to discard changes in the working directory or restore a file to a previous state.
+
+Examples:
+
+	1.Discard changes in the working directory for a specific file: git restore filename.txt
+	2.Restore a file to a specific commit: git restore --source=commit_hash --staged --worktree filename.txt
+	3.Discard all local changes in the working directory: git restore --source=HEAD --staged --worktree .
+
+git rm
+
+Explanation: This command is used to remove files from both the working directory and the staging area. It stages the removal for commit.
+
+Examples:
+
+	1.Remove a file from the working directory and staging area: git rm filename.txt
+	2.Remove a file and stage the removal, but keep it in the working directory: git rm --cached filename.txt
+	3.Remove an entire directory: git rm -r directory/
+
+ 
+
+git bisect
+
+Explanation: This command is used for binary searching through the commit history to find when a bug was introduced. It helps in identifying the commit that introduced a specific issue.
+
+Examples:
+
+	1.Start the bisect session, marking the current commit as bad:
+	git bisect start
+	git bisect bad
+	2.Mark a known good commit (e.g., a commit where the bug is not present):
+
+	git bisect good <commit_hash>
+Git will automatically check out a commit in the middle of the range, and you test whether the bug is present. Repeat marking commits as good or bad until Git identifies the specific commit introducing the bug.
+
+ git diff
+
+Explanation: This command shows the differences between two commits, branches, or files. It's useful for reviewing changes before committing.
+
+Examples:
+
+	1.Show the changes between the working directory and the staging area: git diff
+	2.Compare changes between two branches:git diff branch1..branch2
+	3.View the changes in a specific file:git diff filename.txt
+
+ git grep
+Explanation: This command is used to search for a specific pattern in the contents of the files in the repository.
+
+Examples:
+
+	1.Search for a specific string in the entire repository:git grep "pattern"
+	2.Search in a specific directory:git grep "pattern" path/to/directory/
+	3.Search for a pattern, displaying line numbers:git grep -n "pattern"
+
+ git log
+
+Explanation: This command shows the commit history. It displays information about commits, including commit messages, authors, dates, and commit hashes.
+
+Examples:
+
+	1.Display the commit history:git log
+	2.Show a compact one-line log with abbreviated commit hashes:git log --oneline
+	3.View the log with a graph showing branch and merge history:git log --graph --oneline --all
+
+5. git show
+Explanation: This command displays information about a specific commit, including the changes introduced in that commit.
+
+Examples:
+
+	1.Show details of the latest commit:git show
+	2.Display information about a specific commit:git show <commit_hash>
+	3.Show the changes introduced in the latest commit:git show HEAD
+
+6. git status
+Explanation: This command shows the status of changes as untracked, modified, or staged. It provides an overview of the current state of the working directory.
+
+Examples:
+
+	1.Display the status of the working directory:git status
+	2.Show detailed status including untracked files:git status -u
+	3.View the status in short format: git status -s    
+   
+git branch
+Explanation: This command is used to manage branches in a Git repository. It shows a list of existing branches, and it can also be used to create, delete, or rename branches.
+
+Examples:
+
+	1.List all branches in the repository: git branch
+	2.Create a new branch:git branch new-feature
+	3.Delete a branch: git branch -d old-feature
+
+ git commit
+Explanation: This command is used to record changes made to the repository. Each commit represents a snapshot of the changes along with a commit message.
+
+Examples:
+
+	1.Stage changes and commit with a message:git commit -m "Add new feature"
+	2.Amend the last commit to include new changes:git commit --amend -m "Add and update feature"
+	3.Commit all changes, including untracked files:git commit -a -m "Commit all changes"
+
+ git merge
+Explanation: This command is used to combine changes from different branches. It merges the specified branch into the currently checked-out branch.
+
+Examples:
+
+	1.Merge a branch into the current branch:git merge feature-branch
+	2.Perform a fast-forward merge if possible:git merge --ff-only new-feature
+	3.Resolve a merge conflict during the merge process:git merge feature-branch
+										# Resolve conflicts
+										git add <conflicted-files>
+										git merge --continue
+
+ git rebase
+Explanation: This command is used to reapply commits on top of another base commit. It's an alternative to merging and results in a linear commit history.
+
+Examples:
+
+	1.Rebase the current branch onto the master branch:git rebase master
+	2.Interactively rebase to squash commits:git rebase -i HEAD~3
+	3.Abort a rebase in progress:git rebase --abort
+
+
+ git reset
+Explanation: This command is used to reset the current branch to a specific commit. It can be used to unstage changes or move the branch pointer.
+
+Examples:
+
+	1.Soft reset (preserve changes in working directory):git reset --soft HEAD~1
+	2.Mixed reset (unstage changes but keep them in the working directory):git reset --mixed HEAD~1
+	3.Hard reset (discard changes in both staging area and working directory):git reset --hard HEAD~1
+
+ git switch
+Explanation: This command is used to switch branches in Git. It allows you to easily move between branches without creating a new branch.
+
+Examples:
+
+	1.Switch to an existing branch:git switch feature-branch
+	2.Create and switch to a new branch:git switch -c new-feature
+	3.Switch to the previous branch:git switch -
+
+7. git tag
+Explanation: This command is used to create, list, delete, or verify tags in the repository. Tags are often used to mark specific points in history, such as release versions.
+
+Examples:
+
+	1.Create a lightweight tag for the current commit:git tag v1.0
+	2.Create an annotated tag with a message:git tag -a v1.1 -m "Release version 1.1"
+	3.Delete a tag:git tag -d v1.0
+
+   
+
+ git fetch
+Explanation: This command is used to download changes from a remote repository but does not automatically update your working directory or merge the changes into your branch. It's useful for inspecting changes before deciding to merge.
+
+Examples:
+
+	1.Fetch changes from the default remote (usually "origin"):git fetch
+	2.Fetch changes from a specific remote repository:git fetch upstream
+	3.etch changes for a specific branch:git fetch origin feature-branch
+
+ git pull
+Explanation: This command is a combination of git fetch and git merge. It fetches changes from a remote repository and automatically merges them into the current branch.
+
+Examples:
+
+	1.Pull changes from the default remote and merge into the current branch:git pull
+	2.Pull changes from a specific remote and branch:git pull upstream feature-branch
+	3.Pull changes and rebase the current branch instead of merging:git pull --rebase
+
+ git push
+Explanation: This command is used to upload local branch commits to a remote repository. It updates the remote repository with your changes.
+
+Examples:
+
+	1.Push the current branch to the default remote (usually "origin"):git push
+	2.Push a specific branch to a specific remote:git push upstream feature-branch
+	3.Force-push changes to the remote repository (use with caution):git push --force
+
+
+     
+
+
